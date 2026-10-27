@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selamat Ulang Tahun ke-22, Kesayanganku! 💖🎂</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Floating background particles canvas -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Background Music Audio Element -->
+  <audio id="bgmAudio" src="music/just_the_way_you_are.mp3" loop preload="auto"></audio>
+
+  <!-- BGM Music Control Floating Button -->
+  <div class="audio-control-container">
+    <button id="musicToggleBtn" class="glass-pill-btn" title="Nyalakan/Matikan Lagu">
+      <span class="music-icon" id="musicIcon">🎵</span>
+      <span class="music-text" id="musicLabel">Bruno Mars - Just The Way You Are</span>
+    </button>
+  </div>
+
+  <!-- Fake Malware Warning Screen (Prank Entrance) -->
+  <div id="malwareOverlay" class="malware-overlay">
+    <div class="malware-box" id="malwareBox">
+      <div class="malware-header">
+        <span class="warning-icon-pulse">⚠️</span>
+        <div class="malware-header-text">
+          <h2>PERINGATAN SISTEM KRITIS!</h2>
+          <small>Error: 0x80022_BUCIN_OVERLOAD</small>
+        </div>
+      </div>
+      
+      <div class="malware-body" id="malwareBody">
+        <p class="malware-alert-text">
+          Perangkat Anda telah diserang oleh ancaman berbahaya: <br>
+          <strong class="virus-name">Trojan.LoveAttack.22Yo.exe</strong>
+        </p>
+
+        <div class="malware-details">
+          <p>⚠️ <strong>Gejala infeksi sistem yang terdeteksi:</strong></p>
+          <ul>
+            <li>Detak jantung berdegup lebih cepat dari biasanya</li>
+            <li>Rasa kangen tak terkendali terhadap pacar Anda</li>
+            <li>Potensi terkena serangan cinta dan pelukan mendadak</li>
+          </ul>
+        </div>
+
+        <div class="scan-bar-container">
+          <div class="scan-label">
+            <span>Tingkat Kerusakan Sistem:</span>
+            <span id="scanPercent">99.8% (Bahaya)</span>
+          </div>
+          <div class="scan-bar">
+            <div class="scan-progress" id="scanProgress"></div>
+          </div>
+        </div>
+
+        <p class="malware-instruction">
+          Segera bersihkan ancaman sekarang sebelum sistem meledak menjadi cinta!
+        </p>
+
+        <button id="cleanVirusBtn" class="danger-btn">
+          <span id="cleanBtnText">🚨 BERSIHKAN ANCAMAN SEKARANG! 🚨</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main id="mainContent" class="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container text-center">
+        <div class="badge-pill">✨ 30 OKTOBER 2026 • HAPPY 22ND BIRTHDAY ✨</div>
+        <h1 class="hero-heading">
+          Selamat Ulang Tahun, <br>
+          <span class="hero-name editable-name" id="herNameDisplay" title="Klik untuk mengubah nama">Sayangku 💖</span>
+        </h1>
+        <div class="hero-avatar-wrapper">
+          <div class="hero-avatar-frame">
+            <img src="images/IMG_20261020_172043_109.jpg" alt="Sayangku" class="hero-avatar-img">
+            <span class="hero-crown">👑</span>
+          </div>
+        </div>
+        <p class="hero-subtext">
+          Hari ini hari spesial kamu. Makasih banyak udah lahir ke dunia 22 tahun yang lalu, dan makasih udah milih untuk ada di samping aku sampai hari ini.
+        </p>
+      </div>
+    </section>
+
+    <!-- Interactive Birthday Cake & Make A Wish Section -->
+    <section class="section-cake">
+      <div class="container text-center">
+        <h2 class="section-title">🎂 Tiup Lilin Dulu Yuk 🎂</h2>
+        <p class="section-subtitle">Sebelum ditiup lilinnya, pejamin mata kamu sebentar dan sebutin semua doa yang paling kamu pengen yaa.</p>
+
+        <div class="cake-container">
+          <div class="cake" id="birthdayCake">
+            <!-- Candle 1 (2) -->
+            <div class="candle candle-left">
+              <div class="flame" id="flame1"></div>
+              <div class="candle-stick">2</div>
+            </div>
+            <!-- Candle 2 (2) -->
+            <div class="candle candle-right">
+              <div class="flame" id="flame2"></div>
+              <div class="candle-stick">2</div>
+            </div>
+            <!-- Cake layers -->
+            <div class="cake-top-frosting">
+              <span class="strawberry">🍓</span>
+              <span class="cherry">🍒</span>
+              <span class="strawberry">🍓</span>
+            </div>
+            <div class="cake-tier tier-top"></div>
+            <div class="cake-tier tier-bottom"></div>
+            <div class="cake-plate"></div>
+          </div>
+        </div>
+
+        <div class="cake-action-wrapper">
+          <button id="blowCandleBtn" class="primary-btn pulse-anim">
+            <span>Tiup Lilinnya 🕯️💨</span>
+          </button>
+          <div id="wishMessage" class="wish-message hidden">
+            <div class="wish-pop-box glassmorphism">
+              <h3>🎉 Aamiin! Semoga Terkabul Semuanya 🌟</h3>
+              <p>Semoga di umur 22 ini, semua hal baik yang lagi kamu usahain dimudahkan ya sayang. Sehat terus, bahagia terus, dan semoga kita bisa terus bareng-bareng buat rayain ulang tahun kamu selanjutnya.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deep Touching Love Letter Section -->
+    <section class="section-letter">
+      <div class="container">
+        <div class="letter-card glassmorphism">
+          <div class="letter-header">
+            <span class="letter-date">30 Oktober 2026</span>
+            <div class="letter-stamp">Khusus Buat Kamu 🌸</div>
+          </div>
+
+          <div class="letter-body">
+            <p class="greeting">Hai sayang,</p>
+            
+            <p class="paragraph">
+              Selamat ulang tahun yang ke-22 yaa. Jujur waktu bikin web kecil ini, aku sempat bingung mau nulis apa, karena rasanya nggak bakal ada kata-kata yang beneran cukup buat ngejelasin betapa berartinya kamu buat aku.
+            </p>
+            <p class="paragraph">
+              Makasih banyak ya udah mau nemenin aku sejauh ini. Makasih udah selalu sabar ngadepin sifat aku yang kadang nyebelin, suka overthinking, atau pas aku lagi susah dimengerti. Di tengah hari-hari aku yang capek dan berantakan, ketemu kamu atau sekadar denger suara kamu tuh bener-bener jadi hal yang paling bikin aku ngerasa tenang.
+            </p>
+            <p class="paragraph">
+              Di hari ulang tahun kamu ini, selain semua doa-doa baik, dari lubuk hatiku yang paling dalam aku juga mau minta maaf ya sayang. Maaf kalau sampai hari ini aku masih belum bisa jadi pacar yang sempurna atau yang terbaik buat kamu. Maaf kalau aku masih sering kurang peka, masih ada salah-salah kata atau sikap aku yang bikin kamu sedih, atau waktu di mana aku belum bisa ngertiin kamu dengan baik. Aku tahu aku masih banyak kurangnya, tapi satu hal yang harus kamu tahu: aku selalu tulus dan nggak pernah main-main sayang sama kamu. Aku janji bakal terus belajar jadi orang yang lebih baik dan lebih dewasa buat nemenin kamu.
+            </p>
+            <p class="paragraph highlight-quote">
+              "Di umur 22 ini, aku cuma mau kamu bahagia. Jangan terlalu keras sama diri sendiri ya, kamu udah lakuin yang terbaik dan aku bangga banget punya kamu."
+            </p>
+            <p class="paragraph">
+              Apapun yang bakal kamu lewatin ke depan, kamu nggak usah takut, karena aku bakal selalu ada di samping kamu buat nemenin dan dukung kamu dalam keadaan apapun.
+            </p>
+            <p class="paragraph closing-sign">
+              Sekali lagi, selamat ulang tahun ya cantikku.<br>
+              I love you so much, more than you know. 🤍
+            </p>
+            
+            <div class="letter-footer">
+              <span class="sign-from">Dari pacar kamu yang beruntung banget punya kamu,</span>
+              <span class="signature">Peluk erat dari aku 💖</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 22 Reasons Why I Love You Interactive Deck -->
+    <section class="section-reasons">
+      <div class="container text-center">
+        <h2 class="section-title">22 Alasan Mengapa Aku Jatuh Cinta Padamu ✨</h2>
+        <p class="section-subtitle">Satu alasan untuk setiap tahun kehidupanmu yang luar biasa. Klik kartunya satu per satu ya!</p>
+
+        <div class="reasons-grid" id="reasonsGrid">
+          <!-- 22 Cards generated via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Polaroid Photo Gallery -->
+    <section class="section-gallery">
+      <div class="container text-center">
+        <h2 class="section-title">Galeri Kenangan Manis Kita 📸</h2>
+        <p class="section-subtitle">Setiap detik bersamamu adalah lembaran cerita paling berharga dalam hidupku. (Klik foto untuk melihat lebih jelas ya manis! 🌸)</p>
+
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- 18 Polaroid cards generated dynamically via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Love Jar / Virtual Hug Button -->
+    <section class="section-hug">
+      <div class="container text-center">
+        <div class="hug-card glassmorphism">
+          <div class="hug-icon">🧸</div>
+          <h2>Lagi Butuh Pelukan?</h2>
+          <p>Kalo kamu lagi capek, pusing seharian, atau lagi kangen sama aku, pencet tombol ini yaa!</p>
+          
+          <button id="sendHugBtn" class="primary-btn love-burst-btn">
+            <span>Minta Peluk Virtual 🤗💖</span>
+          </button>
+          
+          <div class="hug-counter-box">
+            Pelukan yang udah aku kirim hari ini: <span id="hugCount" class="counter-number">1024</span> kali! 🥰
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer text-center">
+      <div class="container">
+        <p class="footer-heart">Dibuat khusus penuh sayang buat pacar aku yang ulang tahun ke-22.</p>
+        <p class="footer-date">30 Oktober 2026 • Always by your side 🤍</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Photo Lightbox Modal -->
+  <div id="lightboxModal" class="lightbox-modal">
+    <div class="lightbox-content">
+      <button id="lightboxClose" class="lightbox-close-btn" title="Tutup">✕</button>
+      <button id="lightboxPrev" class="lightbox-nav-btn lightbox-prev" title="Sebelumnya">❮</button>
+      <button id="lightboxNext" class="lightbox-nav-btn lightbox-next" title="Selanjutnya">❯</button>
+      <div class="lightbox-img-wrapper">
+        <img id="lightboxImg" src="" alt="Kenangan Manis" class="lightbox-img">
+      </div>
+      <div class="lightbox-caption-box">
+        <h3 id="lightboxTitle" class="lightbox-title"></h3>
+        <span id="lightboxDate" class="lightbox-date"></span>
+        <p id="lightboxDesc" class="lightbox-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
